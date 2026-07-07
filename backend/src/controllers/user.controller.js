@@ -73,4 +73,23 @@ const login = async(req, res) => {
     res.status(200).json({message:"User login succesfully", loginUser})
 }
 
-module.exports = {register, login}
+const logOut = async(req, res) => {
+
+    res.clearCookie("token")
+
+    res.status(200).json({message:"User succesfully logout"})
+} 
+
+const deleteAccount = async(req, res) => {
+    const userId = req.user.id
+
+    const findDelete = await user.findByIdAndDelete(userId);
+
+     if(!findDelete){
+        return res.status(400).json({message:"User not found"})
+    }
+
+    return res.status(200).json({message:"your account succesfully deleted"})
+}
+
+module.exports = {register, login, logOut, deleteAccount}
