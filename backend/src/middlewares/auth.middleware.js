@@ -13,7 +13,13 @@ const authMiddleware = async(req, res, next) => {
 
     const decoded = jwt.verify(token, process.env.SECRET_KEY)
 
-    req.user = decoded
+    const finddecodedId = await user.findById(decoded.id)
+
+    if(!finddecodedId){
+        return res.status(401).json({message:"you are unauthorized plzz register"})
+    }
+
+    req.user= finddecodedId
 
     next()
 }

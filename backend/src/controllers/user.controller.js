@@ -35,8 +35,7 @@ const register = async (req, res) => {
     })
 
    
-    const token = jwt.sign({id:newUser._id,
-        name:newUser.name
+    const token = jwt.sign({id:newUser._id
     },process.env.SECRET_KEY,{expiresIn:"3d"})
     res.cookie("token", token)
     res.status(201).json({message:"user registration successfully",
@@ -65,7 +64,6 @@ const login = async(req, res) => {
 
     const token = jwt.sign({
         id:loginUser._id,
-        email:loginUser.email
     }, process.env.SECRET_KEY,{expiresIn:"3d"})
 
     res.cookie("token", token)
