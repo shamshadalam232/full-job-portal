@@ -3,7 +3,8 @@ const mongoose = require('mongoose')
 const companySchema = new mongoose.Schema({
     companyName:{
         type:String,
-        required:[true, "company name is required"]
+        required:[true, "company name is required"],
+        minLength:[3, "company name must be at least 3 characters"]
     },
     companyLogo:{
         type:String,
