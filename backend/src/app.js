@@ -3,6 +3,7 @@ const regusterRoute = require('./routes/user.routes')
 const cookieParser = require('cookie-parser')
 const userProfile = require('./routes/userProfile.route')
 const companyRoute = require('./routes/companyRoute')
+const jobRoute = require('./routes/jobRoute')
 
 const app = express()
 app.use(express.json())
@@ -14,6 +15,8 @@ app.use('/api/auth', regusterRoute)
 app.use('/api/users', userProfile)
 //Company route
 app.use('/api/users/', companyRoute)
+//Job route
+app.use('/api/users', jobRoute)
 
 
 

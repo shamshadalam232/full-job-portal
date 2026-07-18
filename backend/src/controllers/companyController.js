@@ -12,7 +12,7 @@ const companyCreate = async(req, res) => {
     })
 
     if(findCompany){
-        return res.status(409).json({message:"allready company created"})
+        return res.status(409).json({message:"Allready created company"})
     }
 
     const createCompany = await company.create({
