@@ -27,7 +27,7 @@ const jobSchema = new mongoose.Schema({
         required:[true, "plzz fill the category"]
     },
     validDate:{
-        type:String,
+        type:Date,
         required:[true, "plzz fill the validDate"]
     },
     salary:{
@@ -42,6 +42,8 @@ const jobSchema = new mongoose.Schema({
         type:Array,
         required:[true, "plzz fill the skills"]
     },
+},{
+   timestamps: true
 })
 
 const jobModel = mongoose.model("jobModel", jobSchema)
