@@ -5,6 +5,7 @@ const userProfile = require('./routes/userProfile.route')
 const companyRoute = require('./routes/companyRoute')
 const jobRoute = require('./routes/jobRoute')
 const userAllJobRoute = require('./routes/userAllJobRoute')
+const applicationRoute = require('./routes/application.rout')
 
 const app = express()
 app.use(express.json())
@@ -20,6 +21,8 @@ app.use('/api/users', companyRoute)
 app.use('/api/users', jobRoute)
 //user all job api
 app.use('/api/users', userAllJobRoute)
+//user application api
+app.use('/api/users', applicationRoute)
 
 
 
