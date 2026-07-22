@@ -1,12 +1,12 @@
-import { useState } from 'react'
+
 import './App.css'
+import RouteConfig from './routes/Route.jsx'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <h1>hello job portal</h1>
+    < RouteConfig />
     </>
   )
 }
