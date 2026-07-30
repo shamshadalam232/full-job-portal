@@ -6,8 +6,19 @@ const companyRoute = require('./routes/companyRoute')
 const jobRoute = require('./routes/jobRoute')
 const userAllJobRoute = require('./routes/userAllJobRoute')
 const applicationRoute = require('./routes/application.rout')
+const cors = require("cors");
+
 
 const app = express()
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
+
+
 app.use(express.json())
 app.use(cookieParser())
 

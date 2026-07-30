@@ -2,13 +2,41 @@ import React, { useState } from 'react'
 import loginImage from "../assets/login image.jpg";
 import registerImage from '../assets/sign-up-login-.webp'
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import api from '../api/Axios'
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false)
 
+    const navigate = useNavigate()
+
+    const [formData, setFormData] = useState({
+         email:'',
+         password:''
+    })
+
+    
+    const handleOnClick = async (e) => {
+       e.preventDefault()
+      try {
+        const res = await api.post("/auth/login", formData);
+
+        navigate('/home')
+        console.log(res.data);
+    } catch (err) {
+        console.log(err.response)
+    }
+    }
+
+    const handleOnChange = (e) => {
+       setFormData({
+         ...formData,
+         [e.target.name]: e.target.value
+       })
+    }
 
   return (
-    <div className='flex flex-col lg:flex-row min-h-screen'>
+    <div className='flex flex-col lg:flex-row min-h-screen mt-14'>
         <div className='w-full lg:w-1/2 '>
         <img className='w-full h-full object-cover p-10' src={loginImage} alt='register' />
         </div>
@@ -27,7 +55,7 @@ export default function LoginPage() {
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                     <Mail className='size-5 text-base-content/30'/>
                 </div>
-                <input type='email'
+                <input type='email' name='email' onChange={handleOnChange}
                 className='input input-bordered w-full pl-11 h-11'
                 placeholder='Enter Your Email'
                 />
@@ -41,7 +69,7 @@ export default function LoginPage() {
                 <div className='absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none'>
                     <Lock className='size-5 text-base-content/30'/>
                 </div>
-                <input type={showPassword ? 'text' : 'password'}
+                <input type={showPassword ? 'text' : 'password'} name='password' onChange={handleOnChange}
                 className='input input-bordered w-full pl-11 h-11'
                 placeholder='Enter Your Password'
                 />
@@ -58,13 +86,16 @@ export default function LoginPage() {
              </div>
              
 
-             <button type='submit'
-             className='btn btn-primary flex justify-center w-full rounded-full bg-indigo-900 mt-4 text-orange-600'>
+             <button type='submit' onClick={handleOnClick}
+             className='btn btn-primary flex justify-center w-full rounded-full bg-indigo-900 mt-4 text-orange-600 h-10 items-center active:scale-95'>
                Submit
              </button>
 
             </div>
         </form>
+        <div className='flex justify-center mt-5'>
+          <h1>if you have not account ? <button onClick={() => navigate('/register')} className="text-slate-900 underline">Register</button></h1>
+        </div>
         </div>
         </div>
     </div>
