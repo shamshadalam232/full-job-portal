@@ -4,6 +4,7 @@ import HomePage from '../pages/HomePage.jsx'
 import LoginPage from '../pages/LoginPage.jsx'
 import RegisterPage from '../pages/RegisterPage.jsx'
 import Navbar from '../components/Navbar/Navbar.jsx'
+import JobsPage from '../pages/JobsPage.jsx'
 
 export default function RouteConfig() {
   return (
@@ -14,6 +15,7 @@ export default function RouteConfig() {
         <Route path='/' element={<HomePage/>} />
         <Route path='/login' element={<LoginPage/>} />
         <Route path='/register' element={<RegisterPage/>} />
+        <Route path='/job' element={<JobsPage />} />
       </Routes>
     </>
     
