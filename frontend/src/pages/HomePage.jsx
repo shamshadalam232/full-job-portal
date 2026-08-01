@@ -3,6 +3,7 @@ import {Search} from 'lucide-react'
 import Hompage2Component from '../components/HomePage2/Hompage2Component'
 import JobCard from '../components/jobCard/JobCard'
 import api from '../api/Axios'
+import Button from '../components/button/viewAllJobButton'
 
 export default function HomePage() {
 
@@ -71,9 +72,10 @@ export default function HomePage() {
         <Hompage2Component />
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
          { Jobs.map((data) => {
-             return <JobCard key={data._id} companyName={data.company.companyName} title={data.title} skills={data.skills} companyLogo={data.company.companyLogo} workMode={data.workMode} validDate={new Date(data.validDate).toLocaleDateString()} location={data.location} experience={data.experience}/>
+             return <JobCard key={data._id} id={data._id} companyName={data.company.companyName} title={data.title} skills={data.skills} companyLogo={data.company.companyLogo} workMode={data.workMode} validDate={new Date(data.validDate).toLocaleDateString()} location={data.location} experience={data.experience}/>
             }) }
-        </div>  
+        </div> 
+        <Button /> 
     </>
     
   )

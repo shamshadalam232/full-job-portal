@@ -1,10 +1,15 @@
 import React from 'react'
 import image from '../../assets/images.png'
+import { useNavigate } from 'react-router-dom'
 
 export default function JobCard(data) {
 
+  const navigate = useNavigate()
+
   return (
-   <div className="p-3">
+   <div className="p-3" onClick={() => {
+       navigate(`/job/${data.id}`)
+   }}>
   <div className="bg-blue-100 rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-2 transition-all duration-300 h-[470px] flex flex-col justify-between p-5">
 
     <div>
@@ -39,7 +44,7 @@ export default function JobCard(data) {
 
       </div>
 
-      <div className="flex flex-wrap gap-2 mb-5">
+      <div className="flex flex-wrap gap-2 mb-4">
 
         {data.skills.map((skill, index) => (
 
