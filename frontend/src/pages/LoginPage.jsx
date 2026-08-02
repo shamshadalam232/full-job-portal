@@ -4,9 +4,13 @@ import registerImage from '../assets/sign-up-login-.webp'
 import { Eye, EyeOff, Lock, Mail, User } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import api from '../api/Axios'
+import UserContext from "../context/UserContext";
+import { useContext } from "react";
 
 export default function LoginPage() {
     const [showPassword, setShowPassword] = useState(false)
+
+    const { setCurrentUser } = useContext(UserContext);
 
     const navigate = useNavigate()
 
@@ -20,8 +24,8 @@ export default function LoginPage() {
        e.preventDefault()
       try {
         const res = await api.post("/auth/login", formData);
-
-        navigate('/home')
+        setCurrentUser(res.data.loginUser);
+        navigate('/')
         console.log(res.data);
     } catch (err) {
         console.log(err.response)
@@ -34,6 +38,8 @@ export default function LoginPage() {
          [e.target.name]: e.target.value
        })
     }
+    
+    
 
   return (
     <div className='flex flex-col lg:flex-row min-h-screen mt-14'>

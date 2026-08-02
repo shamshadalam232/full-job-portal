@@ -6,6 +6,7 @@ import RegisterPage from '../pages/RegisterPage.jsx'
 import Navbar from '../components/Navbar/Navbar.jsx'
 import JobsPage from '../pages/JobsPage.jsx'
 import JobDetail from '../pages/JobDetail.jsx'
+import CandidateDash from '../pages/CandidateDash.jsx'
 
 export default function RouteConfig() {
   return (
@@ -18,6 +19,7 @@ export default function RouteConfig() {
         <Route path='/register' element={<RegisterPage/>} />
         <Route path='/job' element={<JobsPage />} />
         <Route path='/job/:id' element={<JobDetail />} />
+        <Route path='/user/profile' element={<CandidateDash />} />
       </Routes>
     </>
     

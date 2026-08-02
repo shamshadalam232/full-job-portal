@@ -2,10 +2,17 @@ import { Briefcase, Menu, X } from 'lucide-react'
 import React from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import UserContext from '../../context/UserContext'
 
 export default function Navbar() {
+
+  const { currentUser, setCurrentUser } = useContext(UserContext);
+
    
   const [open, setOpen] = useState(false)
+
+  console.log(currentUser);
 
   return (
     

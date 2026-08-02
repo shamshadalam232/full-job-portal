@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import image from "../../assets/login image.jpg";
 
-export default function JobDetailCard() {
+
+export default function JobDetailCard({oneJob}) {
+
+    
   return (
     <div className="bg-white rounded-2xl shadow-lg p-8">
 
@@ -10,7 +13,7 @@ export default function JobDetailCard() {
 
         <div className="bg-gray-100 p-3 rounded-xl shadow-sm">
           <img
-            src={image}
+            src={oneJob.company?.companyLogo}
             alt=""
             className="h-16 w-16 object-contain"
           />
@@ -18,11 +21,11 @@ export default function JobDetailCard() {
 
         <div>
           <h1 className="text-3xl font-bold">
-            Node.js Developer
+            {oneJob.title}
           </h1>
 
           <p className="text-gray-500 text-lg mt-1">
-            TechNova Solutions
+            {oneJob.company?.companyName}
           </p>
         </div>
 
@@ -32,15 +35,15 @@ export default function JobDetailCard() {
       <div className="flex flex-wrap gap-3 mt-8">
 
         <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full">
-          📍 Pune, Maharashtra
+          📍{oneJob.location}
         </span>
 
         <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full">
-          💼 On-site
+          💼 {oneJob.workMode}
         </span>
 
         <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full">
-          👨‍💻 0-1 Year
+          👨‍💻 {oneJob.experience}
         </span>
 
         <span className="bg-blue-100 text-blue-700 px-4 py-2 rounded-full">
@@ -51,31 +54,12 @@ export default function JobDetailCard() {
 
       {/* Skills */}
       <div className="flex flex-wrap gap-3 mt-8">
-
-        <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full">
-          HTML
+         
+          {oneJob.skills?.map((skill, index) => (
+      <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full" key={index}>
+          {skill}
         </span>
-
-        <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full">
-          CSS
-        </span>
-
-        <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full">
-          JavaScript
-        </span>
-
-        <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full">
-          React
-        </span>
-
-        <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full">
-          Node.js
-        </span>
-
-        <span className="border border-blue-300 bg-blue-50 px-4 py-2 rounded-full">
-          MongoDB
-        </span>
-
+    ))}
       </div>
 
     </div>

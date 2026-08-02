@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function JobOverview() {
+export default function JobOverview({oneJob}) {
   return (
     <> 
     <div className="bg-white rounded-2xl shadow-lg p-6">
@@ -12,12 +12,12 @@ export default function JobOverview() {
     <tbody>
       <tr className="border-b">
         <td className="py-3 text-gray-500">Experience</td>
-        <td className="py-3 text-right font-medium">0 - 1 Years</td>
+        <td className="py-3 text-right font-medium">{oneJob.experience}</td>
       </tr>
 
       <tr className="border-b">
         <td className="py-3 text-gray-500">Work Mode</td>
-        <td className="py-3 text-right font-medium">On-site</td>
+        <td className="py-3 text-right font-medium">{oneJob.workMode}</td>
       </tr>
 
       <tr className="border-b">
@@ -27,22 +27,30 @@ export default function JobOverview() {
 
       <tr className="border-b">
         <td className="py-3 text-gray-500">Salary</td>
-        <td className="py-3 text-right font-medium">₹3 - 5 LPA</td>
+        <td className="py-3 text-right font-medium">{oneJob.salary}</td>
       </tr>
 
       <tr className="border-b">
         <td className="py-3 text-gray-500">Location</td>
-        <td className="py-3 text-right font-medium">Pune, Maharashtra</td>
+        <td className="py-3 text-right font-medium">{oneJob.location}</td>
       </tr>
 
       <tr className="border-b">
         <td className="py-3 text-gray-500">Posted On</td>
-        <td className="py-3 text-right font-medium">May 18, 2025</td>
+        <td className="py-3 text-right font-medium">{new Date(oneJob.createdAt).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  })}</td>
       </tr>
 
       <tr>
         <td className="py-3 text-gray-500">Valid Till</td>
-        <td className="py-3 text-right font-medium">Sep 20, 2026</td>
+        <td className="py-3 text-right font-medium">{new Date(oneJob.validDate).toLocaleDateString("en-IN", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+  })}</td>
       </tr>
     </tbody>
   </table>
@@ -57,10 +65,12 @@ export default function JobOverview() {
 
   {/* Logo + Company Name */}
   <div className="flex items-center gap-3 mb-4">
-    <div className="w-12 h-12 bg-gray-200 rounded-md"></div>
+    <div className="w-12 h-12 bg-gray-200 rounded-md">
+        <img src={oneJob.company?.companyLogo}/>
+    </div>
 
     <div>
-      <h3 className="text-lg font-semibold">TechNova Solutions</h3>
+      <h3 className="text-lg font-semibold">{oneJob.company?.companyName}</h3>
     </div>
   </div>
 
@@ -83,14 +93,14 @@ export default function JobOverview() {
     <div className="flex items-center gap-3">
       <div className="w-5 h-5 bg-gray-300 rounded-full"></div>
       <span className="text-gray-700 text-sm">
-        Pune, Maharashtra
+        {oneJob.location}
       </span>
     </div>
 
     <div className="flex items-center gap-3">
       <div className="w-5 h-5 bg-gray-300 rounded-full"></div>
       <span className="text-blue-600 text-sm">
-        www.technovasolutions.com
+        https.techNovaSolutions.com
       </span>
     </div>
 
