@@ -4,13 +4,16 @@ import api from "../api/Axios";
 
 function UserProvider ({children}) {
 
+  console.log(children);
+console.log(typeof children);
+
     const[currentUser, setCurrentUser] = useState(null)
 
     useEffect(() => {
       async function fetchProfile() {
         const res = await api.get('/users/profile')
-        console.log(res)
-        setCurrentUser(res)
+        console.log(res.data)
+        setCurrentUser(res.data.findUser)
       }
       fetchProfile()
     },[])
