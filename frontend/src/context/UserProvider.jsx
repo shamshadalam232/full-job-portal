@@ -4,9 +4,6 @@ import api from "../api/Axios";
 
 function UserProvider ({children}) {
 
-  console.log(children);
-console.log(typeof children);
-
     const[currentUser, setCurrentUser] = useState(null)
 
     useEffect(() => {
