@@ -96,4 +96,16 @@ const applicationStatusUpdate = async (req, res) => {
         application: findApplication
     });
 }
-module.exports = {getMyAppliedJobs, getRecruiterjob, applicationStatusUpdate}
+
+    const findaApplication = async (req, res) => {
+
+
+        const findApplication = await application.findOne({
+            candidate: req.user.id,
+            job: req.params.id
+        })
+
+        return res.status(200).json({applied: !!findApplication})
+    }
+
+module.exports = {getMyAppliedJobs, getRecruiterjob, applicationStatusUpdate, findaApplication}

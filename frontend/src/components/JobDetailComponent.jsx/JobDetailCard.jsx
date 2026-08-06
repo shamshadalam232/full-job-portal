@@ -7,6 +7,12 @@ export default function JobDetailCard({ oneJob }) {
 
   const [applied, setApplied] = useState(false)
 
+  useEffect(() => {
+       if (oneJob?._id) {
+    checkApplication();
+  }
+  },[oneJob._id])
+
   const handleApply = async () => {
     try {
       const res = await api.post(`/users/alljob/${oneJob._id}`)
@@ -16,11 +22,17 @@ export default function JobDetailCard({ oneJob }) {
       console.log(error.response?.data?.message);
       if (error.response?.data?.message === "You have already applied for this job.") {
         setApplied(true);
-      }
-    }
+      }}}
 
+      const checkApplication = async () => {
 
+        try {
+    const res = await api.get(`/users/user-application/${oneJob._id}`);
+    setApplied(res.data.applied);
+  } catch (error) {
+    console.log(error);
   }
+      }
 
 
   return (
