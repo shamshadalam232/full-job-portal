@@ -1,13 +1,12 @@
 import { X } from 'lucide-react';
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../context/UserContext';
+import api from '../../api/Axios';
 
 export default function EditProfileModal({ isOpen, onClose }) {
-    if (!isOpen) {
-        return null;
-    }
 
-    const { currentUser, setCurrentUser } = useContext(UserContext);
+
+     const { currentUser, setCurrentUser } = useContext(UserContext);
 
     const [formData, setFormData] = useState(currentUser)
 
@@ -21,13 +20,32 @@ export default function EditProfileModal({ isOpen, onClose }) {
 
 
     const handleChange = (e) => {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value,
-
-        })
+       if (e.target.name === "skills") {
+    setFormData({
+      ...formData,
+      skills: e.target.value.split(",").map(skill => skill.trim()),
+    });
+  } else {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  }
     }
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const res = await api.patch('/users/profile', formData)
+        setCurrentUser(res.data.findUser),
+        onClose()
+    }
+
+    
+    if (!isOpen) {
+        return null;
+    }
+
+   
 
     return (
         <div className='fixed inset-0 bg-black/50 flex justify-center items-center z-50 '>
@@ -38,7 +56,7 @@ export default function EditProfileModal({ isOpen, onClose }) {
                 </div>
 
 
-
+                <form onSubmit={handleSubmit}>
                 <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2 mt-4'>
                     <h1 className=''>Phone </h1>
                     <input value={formData?.phone} onChange={handleChange} name='phone' className="w-full md:w-80 p-2 border-2 border-blue-400 rounded-lg" placeholder='Change Your Number...'></input>
@@ -52,7 +70,7 @@ export default function EditProfileModal({ isOpen, onClose }) {
                 <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2 mt-4'>
                     <h1 className=''>Skills </h1>
                     <input name="skills"
-                        value={formData?.skills || ""}
+                        value={formData?.skills?.join(",") || ""}
                         onChange={handleChange} className="w-full md:w-80 p-2 border-2 border-blue-400 rounded-lg" placeholder='Change Your Number...'></input>
                 </div>
 
@@ -92,11 +110,11 @@ export default function EditProfileModal({ isOpen, onClose }) {
 
 
                 <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2 mt-4'>
-                    <button className='bg-blue-600 text-white p-2 rounded-lg active:scale-95' onClick={onClose}>Cancel </button>
+                    <button className='bg-blue-600 text-white p-2 rounded-lg active:scale-95' onClick={onClose} type='button'>Cancel </button>
                     <button className='bg-blue-600 text-white p-2 rounded-lg active:scale-95'>Save Change </button>
                 </div>
 
-
+               </form>
 
 
             </div>
