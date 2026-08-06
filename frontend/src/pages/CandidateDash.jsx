@@ -1,13 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import UserContext from '../context/UserContext';
+import EditProfileModal from '../components/modal/EditProfileModal';
 
 
 export default function CandidateDash() {
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
 
-  console.log(currentUser)
+  const [openModal, setOpenModal] = useState(false)
 
 //   if (!currentUser) {
 //   return <h1>Loading...</h1>;
@@ -17,7 +18,7 @@ export default function CandidateDash() {
     <div className='max-w-5xl mx-auto bg-white rounded-2xl shadow-lg overflow-hidden'>
       <div className='relative'>
        <div className='h-44 bg-gradient-to-r from-blue-600 to-cyan-500' >
-        cov
+        
        </div>
        
          <img src='#' className='absolute -bottom-10 left-8 w-36 h-36 rounded-full border-4 border-white object-cover' />
@@ -30,9 +31,10 @@ export default function CandidateDash() {
     <p className="text-gray-500">{currentUser?.email}</p>
   </div>
 
-  <button className="bg-blue-600 text-white px-5 py-2 rounded-lg">
+  <button onClick={() => setOpenModal(true)} className="bg-blue-600 text-white px-5 py-2 rounded-lg">
     Edit Profile
   </button>
+  <EditProfileModal isOpen={openModal} onClose={() => setOpenModal(false)}/>
 </div>
 
 
@@ -42,13 +44,14 @@ export default function CandidateDash() {
  
     <div className="flex flex-wrap gap-2">
      {currentUser?.skills.map((skill, index) => {
-      return
+      return (
       <span key={index}
         
         className="px-3 py-1 bg-blue-100 text-blue-700 rounded-full"
       >
         {skill}
       </span>
+      )
   
 
 
