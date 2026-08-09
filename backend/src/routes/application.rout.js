@@ -2,7 +2,7 @@ const express = require('express')
 const authMiddleware = require('../middlewares/auth.middleware')
 const roleMiddleware = require('../middlewares/roleMiddleware')
 const roleMiddleware2 = require('../middlewares/roleMiddleware2')
-const { getMyAppliedJobs, getRecruiterjob, applicationStatusUpdate, findaApplication } = require('../controllers/application.controller')
+const { getMyAppliedJobs, getRecruiterjob, applicationStatusUpdate, findaApplication, findApplicant } = require('../controllers/application.controller')
 
 const applicationRoute = express.Router()
 
@@ -10,6 +10,7 @@ applicationRoute.get('/user-application', authMiddleware, roleMiddleware2, getMy
 applicationRoute.get('/user-application/recruiter', authMiddleware, roleMiddleware, getRecruiterjob)
 applicationRoute.patch('/user-application/:id', authMiddleware, roleMiddleware, applicationStatusUpdate)
 applicationRoute.get('/user-application/:id', authMiddleware, roleMiddleware2, findaApplication)
+applicationRoute.get('/user-application/applicant/:id', authMiddleware, roleMiddleware, findApplicant)
 
 
 module.exports = applicationRoute
