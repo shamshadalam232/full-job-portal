@@ -9,7 +9,7 @@ function UserProvider ({children}) {
     useEffect(() => {
       async function fetchProfile() {
         const res = await api.get('/users/profile')
-        console.log(res.data)
+        
         setCurrentUser(res.data.findUser)
       }
       fetchProfile()

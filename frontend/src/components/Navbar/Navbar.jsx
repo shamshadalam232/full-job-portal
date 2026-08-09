@@ -10,8 +10,6 @@ import { useNavigate } from 'react-router-dom'
 export default function Navbar() {
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
-  console.log(currentUser)
    
   const [open, setOpen] = useState(false)
 

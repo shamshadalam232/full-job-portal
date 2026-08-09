@@ -11,8 +11,7 @@ export default function MyApplication() {
 
   const getAppliedJobs = async () => {
      const res = await api.get('/users/user-application')
-     console.log(res.data)
-     setAppliedJobs(res.data.findApplication)
+     setAppliedJobs(res.data.validApplications)
   }
 
 

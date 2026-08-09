@@ -37,7 +37,7 @@ export default function RecruiterDash() {
         <select value={item.status} onChange={(e) => handleStatusChange(item._id, e.target.value)}>
           <option>Pending</option>
           <option>In Progress</option>
-          <option>Rejected</option>
+          <option>Reject</option>
         </select>
       </div>
     </div>

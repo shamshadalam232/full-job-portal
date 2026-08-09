@@ -16,11 +16,17 @@ const getMyAppliedJobs = async (req, res) => {
      }
     })
 
+    const validApplications = findApplication.filter(
+    (item) => item.job !== null
+)
+
     if(findApplication.length === 0){
-        return res.status(200).json({message:'No applications found.'})
+        return res.status(200).json({message:'No applications found.', validApplications})
     }
 
-    return res.status(200).json({message:'your applied job here', findApplication})
+    
+
+    return res.status(200).json({message:'your applied job here', validApplications})
 }
 
 const getRecruiterjob = async (req, res) => {
@@ -77,7 +83,7 @@ const applicationStatusUpdate = async (req, res) => {
     const validStatus = [
     "Pending",
     "In Progress",
-    "Rejected"
+    "Reject"
     ]
 
     
@@ -112,7 +118,7 @@ const applicationStatusUpdate = async (req, res) => {
 
         const find = await application.find({
             job:req.params.id
-        })
+        }).populate('candidate', 'name email resume phone')
 
         return res.status(200).json({message:"your applicant", find})
         

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import api from '../api/Axios'
 import EditModal from '../components/modal/EditModal'
+import { useNavigate } from 'react-router-dom'
 
 export default function CreateCompany() {
 
@@ -20,16 +21,13 @@ export default function CreateCompany() {
         setGetJobs(res.data.findJobs)
     }
 
-    const viewApplication = async () => {
-
-    }
-
-
 
     const deleteApplication = async (id) => {
         const res = await api.delete(`/users/get-job/${id}`)
         await fetchJobs()
     }
+
+    const Navigate = useNavigate()
 
 
     return (
@@ -71,7 +69,8 @@ export default function CreateCompany() {
                             <span>{item.updatedAt}</span>
                         </div>
                         <div>
-                            <button>View Application</button>
+                            <button onClick={() => Navigate(`/applicants/${item._id}`)}>View Application</button>
+
                             <button onClick={() => {
                                 setSelectedJob(item)
                                 setOpenModal(true)
