@@ -11,6 +11,9 @@ import MyApplication from '../pages/MyApplication.jsx'
 import RecruiterDash from '../pages/RecruiterDash.jsx'
 import CreateCompany from '../pages/CreateCompany.jsx'
 import CreatePage from '../pages/CreatePage.jsx'
+import Company from '../pages/Company.jsx'
+import RecruiterPage from '../pages/RecruiterPage.jsx'
+import CreateCompanyRecruiter from '../pages/CreateCompanyRecruiter.jsx'
 
 export default function RouteConfig() {
   return (
@@ -28,6 +31,9 @@ export default function RouteConfig() {
         <Route path='/applicants' element={<RecruiterDash />} />
         <Route path='/my-jobs' element={<CreateCompany />} />
         <Route path='/applicants/:jobId' element={<CreatePage />} />
+        <Route path='/company/profile' element={<Company />} />
+        <Route path='/create-job' element={<RecruiterPage />} />
+        <Route path='/create-company' element={<CreateCompanyRecruiter />} /> 
       </Routes>
     </>
     

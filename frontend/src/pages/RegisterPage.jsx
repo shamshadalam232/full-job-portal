@@ -21,7 +21,7 @@ export default function RegisterPage() {
     try {
         const res = await api.post("/auth/register", formData);
 
-        navigate('/home')
+        navigate('/')
         console.log(res.data);
     } catch (err) {
         console.log(err.response)
