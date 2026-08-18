@@ -28,6 +28,10 @@ export default function JobCard(data) {
         {data.companyName}
       </p>
 
+      <p className="text-gray-600 mb-4">
+        {data.description}
+      </p>
+
       <div className="flex flex-wrap gap-2 mb-4 text-sm">
 
         <span className="bg-white px-3 py-1 rounded-full">

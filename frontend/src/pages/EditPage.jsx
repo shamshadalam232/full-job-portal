@@ -16,6 +16,8 @@ export default function EditPage() {
   companySocialLinks: "",
   })
 
+  const [companyLogo, setCompanyLogo] = useState(null)
+
   useEffect (() => {
     const getJob = async () => {
       const res = await api.get('/users/get-company')
@@ -45,7 +47,25 @@ export default function EditPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-     const res = await api.patch('/users/update-company', formData)
+
+    const data = new FormData()
+
+    data.append('companyName', formData.companyName)
+  data.append('companyWebsite', formData.companyWebsite)
+  data.append('companyLocation', formData.companyLocation)
+  data.append('companyIndustry', formData.companyIndustry)
+  data.append('companySize', formData.companySize)
+  data.append('companyFoundedYear', formData.companyFoundedYear)
+  data.append('companyDescription', formData.companyDescription)
+  data.append('companySocialLinks', formData.companySocialLinks)
+
+  if(companyLogo){
+    data.append('companyLogo', companyLogo)
+  }
+  navigate('/company/profile')
+  console.log("SELECTED FILE:", companyLogo)
+console.log("FORM DATA:", [...data.entries()])
+     const res = await api.patch('/users/update-company', data)
   }
 
 
@@ -54,6 +74,10 @@ export default function EditPage() {
       <div>EditPage</div>
       <div>
         <form onSubmit={handleSubmit}>
+
+          <h1>company Logo</h1>
+          <input onChange={(e) => setCompanyLogo(e.target.files[0])} name='companyLogo' placeholder='select your new photo' type='file' accept='image/jpeg,image/png'/>
+
          <h1>Company Name</h1>
         <input value={formData.companyName} onChange={handleChange} name='companyName' placeholder='Enter Your title...' type='text' />
 
@@ -72,7 +96,7 @@ export default function EditPage() {
         <h1>Company Founded Year</h1>
         <input value={formData.companyFoundedYear} onChange={handleChange} name='companyFoundedYear' placeholder='Enter Your title...' type='text' />
 
-        <button onClick={() => navigate('/company/profile')}>SUBMIT</button>
+        <button type='submit'>SUBMIT</button>
         </form>
       </div>
     </>

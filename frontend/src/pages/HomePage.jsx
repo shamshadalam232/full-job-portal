@@ -14,6 +14,7 @@ export default function HomePage() {
     async function fetchJobs() {
      const jobs = await api.get('/users/alljob')
      setJobs(jobs.data.allJob)
+     console.log(jobs.data.allJob)
     }
     fetchJobs()
     
@@ -72,7 +73,7 @@ export default function HomePage() {
         <Hompage2Component />
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6'>
          { Jobs.map((data) => {
-             return <JobCard key={data._id} id={data._id} companyName={data.company.companyName} title={data.title} skills={data.skills} companyLogo={data.company.companyLogo} workMode={data.workMode} validDate={new Date(data.validDate).toLocaleDateString()} location={data.location} experience={data.experience}/>
+             return <JobCard key={data._id} id={data._id} companyName={data.company.companyName} title={data.title} skills={data.skills} companyLogo={data.company.companyLogo} workMode={data.workMode} validDate={new Date(data.validDate).toLocaleDateString()} location={data.location} experience={data.experience} description={data.description}/>
             }) }
         </div> 
         <Button /> 

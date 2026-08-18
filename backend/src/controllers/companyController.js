@@ -60,8 +60,13 @@ const updateCompany = async(req, res) => {
         companySocialLinks
     }  = req.body
 
-    const findCompanyUpdated = await company.findOneAndUpdate({companyRecruiter:companyRecruiter}, req.body, {new: true})
+    if(req.file){
+        req.body.companyLogo = req.file.path
+    }
 
+    const findCompanyUpdated = await company.findOneAndUpdate({companyRecruiter:companyRecruiter}, req.body, {new: true})
+     console.log("BODY:", req.body)
+console.log("FILE:", req.file)
     if(!findCompanyUpdated){
         return res.status(404).json({message:"you are not created company"})
     }

@@ -7,7 +7,7 @@ import EditProfileModal from '../components/modal/EditProfileModal';
 export default function CandidateDash() {
 
   const { currentUser, setCurrentUser } = useContext(UserContext);
-
+  console.log(currentUser)
   const [openModal, setOpenModal] = useState(false)
 
 //   if (!currentUser) {
@@ -21,7 +21,7 @@ export default function CandidateDash() {
         
        </div>
        
-         <img src='#' className='absolute -bottom-10 left-8 w-36 h-36 rounded-full border-4 border-white object-cover' />
+         <img src={currentUser?.profilePhoto} className='absolute -bottom-10 left-8 w-36 h-36 rounded-full border-4 border-white object-cover' />
        </div>
 
 

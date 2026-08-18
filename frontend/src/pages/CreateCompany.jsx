@@ -47,7 +47,7 @@ export default function CreateCompany() {
                 return (
                     <div key={item._id}>
                         <div>
-                            <img src='#' />
+                            
                             <h1>{item.category}</h1>
                             <h1>{item.title}</h1>
                             <h1>{item.description}</h1>

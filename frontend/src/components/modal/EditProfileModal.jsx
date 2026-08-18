@@ -10,6 +10,8 @@ export default function EditProfileModal({ isOpen, onClose }) {
 
     const [formData, setFormData] = useState(currentUser)
 
+    const [profilePhoto, setProfilePhoto] = useState(null)
+
 
     useEffect(() => {
         if (currentUser) {
@@ -35,7 +37,20 @@ export default function EditProfileModal({ isOpen, onClose }) {
 
     const handleSubmit = async (e) => {
         e.preventDefault()
-        const res = await api.patch('/users/profile', formData)
+
+        const data = new FormData()
+
+        data.append("phone", formData.phone)
+  data.append("location", formData.location)
+  data.append("skills", JSON.stringify(formData.skills))
+  data.append("bio", formData.bio)
+  data.append("education", formData.education)
+  data.append("experience", formData.experience)
+
+  if(profilePhoto){
+    data.append("profilePhoto", profilePhoto)
+  }
+        const res = await api.patch('/users/profile', data)
         setCurrentUser(res.data.findUser),
         onClose()
     }
@@ -99,7 +114,7 @@ export default function EditProfileModal({ isOpen, onClose }) {
 
                 <div className='flex flex-col md:flex-row md:justify-between md:items-center gap-2 mt-4'>
                     <h1 className=''>Change Photo </h1>
-                    <input type='file' accept="image/*" className="w-full md:w-80 p-2 border-2 border-blue-400 rounded-lg" placeholder='Change Your Experiance...'></input>
+                    <input type='file' accept="image/*" className="w-full md:w-80 p-2 border-2 border-blue-400 rounded-lg" placeholder='Change Your Experiance...' onChange={(e) => setProfilePhoto(e.target.files[0])}></input>
                 </div>
 
 

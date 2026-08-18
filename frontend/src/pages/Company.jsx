@@ -22,6 +22,7 @@ export default function Company() {
   <>
     {company ? (
       <div>
+        <img src={company.companyLogo}/>
         <h1>{company.companyName}</h1>
         <p>{company.companyDescription}</p>
         <p>{company.companyIndustry}</p>
