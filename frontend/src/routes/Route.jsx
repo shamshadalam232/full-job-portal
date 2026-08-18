@@ -14,6 +14,7 @@ import CreatePage from '../pages/CreatePage.jsx'
 import Company from '../pages/Company.jsx'
 import RecruiterPage from '../pages/RecruiterPage.jsx'
 import CreateCompanyRecruiter from '../pages/CreateCompanyRecruiter.jsx'
+import EditPage from '../pages/EditPage.jsx'
 
 export default function RouteConfig() {
   return (
@@ -34,6 +35,7 @@ export default function RouteConfig() {
         <Route path='/company/profile' element={<Company />} />
         <Route path='/create-job' element={<RecruiterPage />} />
         <Route path='/create-company' element={<CreateCompanyRecruiter />} /> 
+        <Route path='/company-edit' element={<EditPage />} />
       </Routes>
     </>
     

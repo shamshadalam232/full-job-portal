@@ -23,10 +23,13 @@ export default function Company() {
     {company ? (
       <div>
         <h1>{company.companyName}</h1>
-        <p>{company.location}</p>
-        <p>{company.description}</p>
-
-        <button >
+        <p>{company.companyDescription}</p>
+        <p>{company.companyIndustry}</p>
+        <p>{company.companyLocation}</p>
+        <p>{company.companySize}</p>
+        <p>{company.companySocialLinks}</p>
+        <p>{company.companyWebsite}</p>
+        <button onClick={() => navigate('/company-edit')} >
           Edit Company
         </button>
       </div>
