@@ -14,7 +14,7 @@ const app = express()
 
 app.use(
   cors({
-    origin: "https://full-job-portal-8hbte0p0n-shamshad-s-projects1.vercel.app",
+    origin: "https://full-job-portal-pi.vercel.app/",
     credentials: true,
   })
 );
