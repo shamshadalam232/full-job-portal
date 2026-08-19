@@ -9,6 +9,24 @@ export default function HomePage() {
 
   const [Jobs, setJobs] = useState([])
 
+  const [searchJob , setSearchJob] = useState('')
+
+  const handleSearch = async (e) => {
+    e.preventDefault()
+    
+    console.log(searchJob)
+  
+
+    const res = await api.get(`/users/search?search=${encodeURIComponent(searchJob)}`)
+
+    console.log("SEARCH RESULT:", res.data)
+    setJobs(res.data)
+  }
+
+  const handleChange = (e) => {
+    setSearchJob(e.target.value)
+  }
+
 
   useEffect(() => {
     async function fetchJobs() {
@@ -43,12 +61,12 @@ export default function HomePage() {
           </div>
           </div>
 
-
+          <form onSubmit={handleSearch}>
           <div className='bg-white p-5 flex flex-col md:flex-row gap-4 md:items-center rounded-lg md:justify-around max-w-5xl mx-auto'>
 
             <div className='w-full md:w-auto relative'>
                <Search size={22} className='absolute left-3 top-1/2 -translate-y-1/2 text-gray-500'/>
-               <input type='text' placeholder='Search Jobs...' className='bg-blue-50 h-10 rounded-xl w-full px-10 outline-none'/>
+               <input value={searchJob} onChange={handleChange} type='text' placeholder='Search Jobs...' className='bg-blue-50 h-10 rounded-xl w-full px-10 outline-none'/>
             </div>
             <div className='w-full md:w-auto'>
                <select className='w-full md:w-56 h-10 px-4 rounded-xl border outline-none'>
@@ -65,6 +83,10 @@ export default function HomePage() {
               <button className='w-full md:w-auto bg-blue-600 text-white px-6 h-10 rounded-xl hover:bg-blue-700'>Search</button>
             </div>
           </div>
+          </form>
+
+
+
 
           <div className='w-full md:w-auto'>
             <div className='mt-10 h-10 flex justify-center'>Looking to hire ? <span className='underline text-blue-600'>Post a Job</span></div>

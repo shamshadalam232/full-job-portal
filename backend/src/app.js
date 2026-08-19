@@ -7,6 +7,7 @@ const jobRoute = require('./routes/jobRoute')
 const userAllJobRoute = require('./routes/userAllJobRoute')
 const applicationRoute = require('./routes/application.rout')
 const cors = require("cors");
+const search = require('./routes/searchJobRoute')
 
 
 const app = express()
@@ -34,6 +35,8 @@ app.use('/api/users', jobRoute)
 app.use('/api/users', userAllJobRoute)
 //user application api
 app.use('/api/users', applicationRoute)
+//search input
+app.use('/api/users', search)
 
 
 
