@@ -19,11 +19,12 @@ export default function Navbar() {
 
   useEffect(() => {
     function handleClickOutside(event){
-         dropDownRef.current.contains(event.target)
-
-         if(!dropDownRef.current.contains(event.target)){
-          setOpenDropDown(false)
-         }
+         if (
+      dropDownRef.current &&
+      !dropDownRef.current.contains(event.target)
+    ) {
+      setOpenDropDown(false)
+    }
     }
 
     document.addEventListener('click', handleClickOutside)
