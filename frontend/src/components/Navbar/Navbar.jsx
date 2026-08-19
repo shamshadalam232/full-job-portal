@@ -238,6 +238,54 @@ export default function Navbar() {
           <Link className="block py-2" to="/register">📝 Register</Link>
         </>
       )}
+
+      {/* Job Seeker Mobile Menu */}
+    {currentUser?.role === "jobSeeker" && (
+      <>
+        <Link className="block py-2" to="/user/profile">
+          👤 My Profile
+        </Link>
+
+        <Link className="block py-2" to="/applied-jobs">
+          💼 Applied Jobs
+        </Link>
+
+        <button
+          onClick={handleLogout}
+          className="block py-2 text-red-600"
+        >
+          🚪 Logout
+        </button>
+      </>
+    )}
+
+    {/* Recruiter Mobile Menu */}
+    {currentUser?.role === "recruiter" && (
+      <>
+        <Link className="block py-2" to="/company/profile">
+          🏢 Company Profile
+        </Link>
+
+        <Link className="block py-2" to="/create-job">
+          ➕ Post Job
+        </Link>
+
+        <Link className="block py-2" to="/my-jobs">
+          💼 My Jobs
+        </Link>
+
+        <Link className="block py-2" to="/applicants">
+          👥 Applicants
+        </Link>
+
+        <button
+          onClick={handleLogout}
+          className="block py-2 text-red-600"
+        >
+          🚪 Logout
+        </button>
+      </>
+    )}
     </div>
   )}
 </>
