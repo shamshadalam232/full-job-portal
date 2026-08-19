@@ -25,21 +25,39 @@ export default function RecruiterDash() {
     
     {recruiterApplication.map((item) => {
   return (
-    <div key={item._id}>
-      <div>{item.candidate.name}</div>
-      <div>{item.candidate.email}</div>
-      <div>{item.candidate.phone}</div>
-      <div>{item.job.title}</div>
+    <div className='bg-slate-400 p-2 m-2 rounded-lg'>
+    <div key={item._id} className='p-4 '>
+      <div className='flex gap-4'>
+        <span>Name :</span>
+        <p>{item.candidate.name}</p>
+        </div>
+
+      <div className='flex gap-4 '>
+        <span>Email :</span>
+        <p className='flex md:flex-col'>{item.candidate.email}</p>
+      </div>
+
+      <div className='flex gap-4'>
+        <span>Mob No :</span>
+        <p>{item.candidate.phone}</p>
+        </div>
+
+      <div className='flex gap-4'>
+        <span>Title :</span>
+        <p>{item.job.title}</p>
+        </div>
+
       <div>{item.candidate.resume}</div>
 
       <div>
-        Status
-        <select value={item.status} onChange={(e) => handleStatusChange(item._id, e.target.value)}>
+        Status :
+        <select className='ml-4' value={item.status} onChange={(e) => handleStatusChange(item._id, e.target.value)}>
           <option>Pending</option>
           <option>In Progress</option>
           <option>Reject</option>
         </select>
       </div>
+    </div>
     </div>
   );
 }
