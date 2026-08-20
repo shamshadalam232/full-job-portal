@@ -12,13 +12,17 @@ const search = require('./routes/searchJobRoute')
 
 const app = express()
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://full-job-portal-pi.vercel.app",
+];
+
 app.use(
   cors({
-    origin: "https://full-job-portal-pi.vercel.app/",
+    origin: true,
     credentials: true,
   })
 );
-
 
 app.use(express.json())
 app.use(cookieParser())
