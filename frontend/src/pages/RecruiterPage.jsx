@@ -34,10 +34,10 @@ export default function RecruiterPage() {
   return (
     <>
      <div className='bg-blue-100 flex justify-center text-2xl p-4 text-red-500 rounded-lg'>Create Your Job And Submit</div>
-     <div className='bg-blue-600 text-white'>
+     <div className='bg-blue-600 text-black'>
       <form onSubmit={handleSubmit}>
         <h1 className='p-2 text-lg'>Title</h1>
-        <input className='w-full p-4 rounded-lg' onChange={handleChange} name='title' placeholder='Enter Your title...' type='text' />
+        <input className='w-full p-4 rounded-lg ' onChange={handleChange} name='title' placeholder='Enter Your title...' type='text' />
 
         <h1 className='p-2 text-lg'>Description</h1>
         <input className='w-full p-4 rounded-lg' name='description' onChange={handleChange} placeholder='Enter Your Description...' type='text' />
