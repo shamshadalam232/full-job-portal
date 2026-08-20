@@ -26,10 +26,20 @@ export default function RecruiterPage() {
   }
 
   const handleSubmit = async (e) => {
-   e.preventDefault()
-   const res = await api.post('/users/create-job', formData)
-    navigate('/my-jobs')
+  e.preventDefault();
+
+  try {
+    const res = await api.post('/users/create-job', formData);
+
+    console.log(res.data);
+    navigate('/my-jobs');
+
+  } catch (error) {
+    console.log("CREATE JOB ERROR:", error);
+    console.log("STATUS:", error.response?.status);
+    console.log("DATA:", error.response?.data);
   }
+};
 
   return (
     <>
@@ -52,7 +62,7 @@ export default function RecruiterPage() {
         <input className='w-full p-4 rounded-lg' onChange={handleChange} name='category' placeholder='Enter Your category...' type='text' />
 
         <h1 className='p-2 text-lg'>Valid Date</h1>
-        <input className='w-full p-4 rounded-lg' onChange={handleChange} name='validDate' placeholder='Enter Your valid date...' type='text' />
+        <input className='w-full p-4 rounded-lg' onChange={handleChange} name='validDate' type='date' placeholder='Enter Your valid date...' type='text' />
 
         <h1 className='p-2 text-lg'>Salary</h1>
         <input className='w-full p-4 rounded-lg' onChange={handleChange} name='salary' placeholder='Enter Your salary...' type='text' />
